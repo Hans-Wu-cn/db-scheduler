@@ -13,6 +13,7 @@
  */
 package com.github.kagkarlsson.scheduler.solon.config;
 
+
 import com.github.kagkarlsson.scheduler.PollingStrategyConfig;
 import com.github.kagkarlsson.scheduler.SchedulerBuilder;
 import com.github.kagkarlsson.scheduler.jdbc.JdbcTaskRepository;
