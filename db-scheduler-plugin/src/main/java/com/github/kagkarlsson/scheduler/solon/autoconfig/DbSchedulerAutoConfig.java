@@ -38,7 +38,7 @@ public class DbSchedulerAutoConfig {
         if (data == null) {
           return null;
         }
-       return ONode.serialize(data).getBytes();
+        return ONode.serialize(data).getBytes();
       }
 
       public <T> T deserialize(Class<T> clazz, byte[] serializedData) {
@@ -49,11 +49,21 @@ public class DbSchedulerAutoConfig {
         return ONode.deserialize(serializedStr);
       }
     };
+
   @Condition(onMissingBean = DbSchedulerCustomizer.class)
   @Bean
   public DbSchedulerCustomizer noopCustomizer() {
-    return new DbSchedulerCustomizer() {};
+    return new DbSchedulerCustomizer() {
+    };
   }
+
+  @Condition(onMissingBean = StatsRegistry.class)
+  @Bean
+  StatsRegistry noopStatsRegistry() {
+    log.debug("Missing StatsRegistry bean in context, creating a no-op StatsRegistry");
+    return StatsRegistry.NOOP;
+  }
+
   @Bean
   @Condition(onMissingBean = Scheduler.class)
   public Scheduler scheduler(DbSchedulerCustomizer customizer,

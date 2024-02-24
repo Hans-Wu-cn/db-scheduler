@@ -1,7 +1,10 @@
 package com.github.kagkarlsson.scheduler.solon;
 
+import com.github.kagkarlsson.scheduler.ScheduledExecution;
 import com.github.kagkarlsson.scheduler.Scheduler;
+import com.github.kagkarlsson.scheduler.task.TaskInstanceId;
 import java.util.Map;
+import java.util.Optional;
 import org.noear.solon.Utils;
 import org.noear.solon.scheduling.ScheduledException;
 import org.noear.solon.scheduling.annotation.Scheduled;
@@ -44,9 +47,9 @@ public class JobManager extends AbstractJobManager {
       holder.setData(data);
 
       try {
-        schedulerProxy.
-        if (schedulerProxy.exists(name)) {
-          schedulerProxy.resume(name);
+        Optional<TaskInstanceId> taskInstanceId = schedulerProxy.exists(name);
+        if (taskInstanceId.isPresent()) {
+          schedulerProxy.resume(taskInstanceId.get());
         } else {
           schedulerProxy.register(holder);
         }
