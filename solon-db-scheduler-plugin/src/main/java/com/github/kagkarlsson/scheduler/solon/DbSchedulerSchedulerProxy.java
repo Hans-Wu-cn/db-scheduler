@@ -60,7 +60,9 @@ public class DbSchedulerSchedulerProxy implements Lifecycle {
 
   @Override
   public void stop() throws Throwable {
-
+    if (scheduler != null) {
+      scheduler.stop();
+    }
   }
 
   public void setScheduler(Scheduler scheduler) {
@@ -105,7 +107,7 @@ public class DbSchedulerSchedulerProxy implements Lifecycle {
   }
 
   public void pause(String name) throws DbSchedulerException {
-      throw new RuntimeException("DbSchedule currently does not support pausing tasks");
+    throw new RuntimeException("DbSchedule currently does not support pausing tasks");
   }
 
   /**
@@ -155,7 +157,7 @@ public class DbSchedulerSchedulerProxy implements Lifecycle {
     }
   }
 
-  private TaskInstanceId buildTaskInstanceId(String name){
+  private TaskInstanceId buildTaskInstanceId(String name) {
     return TaskInstanceId.of(RecurringTask.INSTANCE, name);
   }
 

@@ -1,0 +1,16 @@
+solon:
+  app:
+    name: 'solon-example'
+  logging:
+    logger:
+      "com.github.kagkarlsson.scheduler":
+        level: INFO
+# Db-scheduler configuration
+db-scheduler:
+  threads: 5
+  polling-interval: 5s
+  immediate-execution-enabled: true
+  polling-strategy: fetch
+  polling-strategy-lower-limit-fraction-of-threads: 0.5
+  polling-strategy-upper-limit-fraction-of-threads: 3.0
+  shutdown-max-wait: 30m

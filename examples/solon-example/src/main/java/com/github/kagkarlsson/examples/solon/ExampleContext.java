@@ -14,21 +14,37 @@
 package com.github.kagkarlsson.examples.solon;
 
 import com.github.kagkarlsson.scheduler.SchedulerClient;
+import java.time.Instant;
+import java.util.function.Consumer;
+import org.noear.solon.data.annotation.TranAnno;
+import org.noear.solon.data.tran.TranUtils;
+import org.noear.solon.data.tran.interceptor.TranInterceptor;
 import org.slf4j.Logger;
-import org.springframework.transaction.support.TransactionTemplate;
 
 public class ExampleContext {
   public SchedulerClient schedulerClient;
-  public TransactionTemplate tx;
   private Logger logger;
 
-  public ExampleContext(SchedulerClient schedulerClient, TransactionTemplate tx, Logger logger) {
+  public ExampleContext(SchedulerClient schedulerClient, Logger logger) {
     this.schedulerClient = schedulerClient;
-    this.tx = tx;
     this.logger = logger;
   }
 
   public void log(String message) {
     logger.info(message);
+  }
+
+  public void executeWithoutResult(){
+
+  }
+  public void executeWithoutResult(Consumer<Object> action) throws RuntimeException {
+    try {
+      TranUtils.execute(new TranAnno(), ()->{
+        action.accept(new Object());
+      });
+    } catch (Throwable e) {
+      throw new RuntimeException(e);
+    }
+
   }
 }

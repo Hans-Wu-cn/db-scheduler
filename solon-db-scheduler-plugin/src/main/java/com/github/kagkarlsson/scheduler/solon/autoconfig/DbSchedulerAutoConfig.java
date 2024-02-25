@@ -68,9 +68,9 @@ public class DbSchedulerAutoConfig {
   @Condition(onMissingBean = Scheduler.class)
   public Scheduler scheduler(DbSchedulerCustomizer customizer,
     StatsRegistry registry,
-    @Inject DbSchedulerProperties dbSchedulerProperties,
-    @Inject DataSource dataSource,
-    @Inject List<Task<?>> configuredTasks
+    @Inject DbSchedulerProperties dbSchedulerProperties
+//    @Inject DataSource dataSource,
+//    @Inject List<Task<?>> configuredTasks
   ) {
     log.info("Creating db-scheduler using tasks from Spring context: {}", configuredTasks);
     this.dataSource = dataSource;

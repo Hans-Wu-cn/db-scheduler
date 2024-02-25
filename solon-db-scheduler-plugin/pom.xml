@@ -9,7 +9,7 @@
     <version>master-SNAPSHOT</version>
   </parent>
 
-  <artifactId>db-scheduler-plugin</artifactId>
+  <artifactId>solon-db-scheduler-plugin</artifactId>
 
   <dependencyManagement>
     <dependencies>

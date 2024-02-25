@@ -14,9 +14,9 @@
 package com.github.kagkarlsson.examples.solon;
 
 import java.util.concurrent.atomic.AtomicLong;
-import org.springframework.stereotype.Service;
+import org.noear.solon.annotation.Component;
 
-@Service
+@Component
 public class CounterService {
   private final AtomicLong count = new AtomicLong(0L);
 

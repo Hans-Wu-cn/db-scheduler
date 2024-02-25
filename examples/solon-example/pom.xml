@@ -21,7 +21,7 @@
   <dependencies>
     <dependency>
       <groupId>com.github.kagkarlsson</groupId>
-      <artifactId>db-scheduler-plugin</artifactId>
+      <artifactId>solon-db-scheduler-plugin</artifactId>
       <version>${project.version}</version>
     </dependency>
     <!--solon dependency-->

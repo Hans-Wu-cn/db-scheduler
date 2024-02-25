@@ -57,7 +57,7 @@
 		<module>db-scheduler</module>
 		<module>db-scheduler-boot-starter</module>
         <module>examples</module>
-    <module>db-scheduler-plugin</module>
+    <module>solon-db-scheduler-plugin</module>
   </modules>
 
 	<dependencyManagement>

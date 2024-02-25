@@ -29,6 +29,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import org.noear.solon.annotation.Controller;
 import org.noear.solon.annotation.Get;
+import org.noear.solon.annotation.Inject;
 import org.noear.solon.annotation.Mapping;
 import org.noear.solon.annotation.Post;
 import org.noear.solon.validation.annotation.Valid;
@@ -36,7 +37,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Controller
-@Valid
 @Mapping("/admin")
 public class AdminController {
 
@@ -72,14 +72,9 @@ public class AdminController {
       RecurringStateTrackingConfiguration.STATE_TRACKING_RECURRING_TASK.getTaskName(),
       RecurringStateTrackingConfiguration::start);
   }
-
-  private final SchedulerClient schedulerClient;
-  private final ExampleContext exampleContext;
-
-  public AdminController(SchedulerClient schedulerClient, TransactionTemplate tx) {
-    this.schedulerClient = schedulerClient;
-    exampleContext = new ExampleContext(schedulerClient, tx, LOG);
-  }
+  @Inject
+  private SchedulerClient schedulerClient;
+  private final ExampleContext exampleContext=new ExampleContext(schedulerClient, LOG);
 
   @Mapping(path = LIST_SCHEDULED)
   @Get

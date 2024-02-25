@@ -1,0 +1,59 @@
+{
+  "properties": [
+    {
+      "name": "db-scheduler.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": "true",
+      "description": "是否启动db-scheduler"
+    },
+    {
+      "name": "db-scheduler.heartbeat-interval",
+      "type": "java.lang.Object",
+      "defaultValue": "5m",
+      "description": "更新运行执行的检测信号时间戳的频率"
+    },
+    {
+      "name": "db-scheduler.polling-interval",
+      "type": "java.lang.Object",
+      "defaultValue": "10",
+      "description": "调度程序检查数据库是否有到期执行的频率"
+    },
+    {
+      "name": "db-scheduler.polling-strategy-lower-limit-fraction-of-threads",
+      "type": "java.lang.Object",
+      "defaultValue": "0.5",
+      "description": "轮询策略线程的下限分数"
+    },
+    {
+      "name": "db-scheduler.polling-strategy-upper-limit-fraction-of-threads",
+      "type": "java.lang.Object",
+      "defaultValue": "3.0",
+      "description": "轮询策略线程的上限分数"
+    },
+    {
+      "name": "db-scheduler.table-name",
+      "type": "java.lang.String",
+      "defaultValue": "scheduled_tasks",
+      "description": "用于跟踪任务执行的表的名称"
+    },
+    {
+      "name": "db-scheduler.immediate-execution-enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": "false",
+      "description": "计划程序将尝试直接执行计划为now()"
+    },
+    {
+      "name": "db-scheduler.threads",
+      "type": "java.lang.Integer",
+      "defaultValue": 1,
+      "description": "线程数"
+    },
+    {
+      "name": "shutdown-max-wait",
+      "type": "java.lang.Object",
+      "defaultValue": "30m",
+      "description": "在中断执行器服务线程之前，调度程序将等待多长时间"
+    }
+
+  ]
+}

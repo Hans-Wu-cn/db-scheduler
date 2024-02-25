@@ -14,6 +14,7 @@
 package com.github.kagkarlsson.examples.solon.config;
 
 import com.github.kagkarlsson.examples.solon.ExampleContext;
+import com.github.kagkarlsson.examples.utils.EventLogger;
 import com.github.kagkarlsson.scheduler.task.ExecutionContext;
 import com.github.kagkarlsson.scheduler.task.Task;
 import com.github.kagkarlsson.scheduler.task.TaskInstance;
@@ -21,6 +22,7 @@ import com.github.kagkarlsson.scheduler.task.TaskWithoutDataDescriptor;
 import com.github.kagkarlsson.scheduler.task.helper.Tasks;
 import java.time.Instant;
 import java.util.Random;
+import org.noear.solon.annotation.Bean;
 import org.noear.solon.annotation.Configuration;
 
 @Configuration
@@ -36,21 +38,20 @@ public class TransactionallyStagedJobConfiguration {
         "Scheduling a one-time task in a transaction. If the transaction rolls back, the insert of the task also "
             + "rolls back, i.e. it will never run.");
 
-    ctx.tx.executeWithoutResult(
-        (TransactionStatus status) -> {
-          // Since it is scheduled in a transaction, the scheduler will not run it until the tx
-          // commits
-          // If the tx rolls back, the insert of the new job will also roll back, i.e. not run.
-          ctx.schedulerClient.schedule(
-              TRANSACTIONALLY_STAGED_TASK.instance(String.valueOf(ID++)), Instant.now());
+    ctx.executeWithoutResult((Object o) -> {
+      // Since it is scheduled in a transaction, the scheduler will not run it until the tx
+      // commits
+      // If the tx rolls back, the insert of the new job will also roll back, i.e. not run.
+      ctx.schedulerClient.schedule(
+        TRANSACTIONALLY_STAGED_TASK.instance(String.valueOf(ID++)), Instant.now());
 
-          // Do additional database-operations here
+      // Do additional database-operations here
 
-          if (new Random().nextBoolean()) {
-            throw new RuntimeException(
-                "Simulated failure happening after task was scheduled. Scheduled task will never run.");
-          }
-        });
+      if (new Random().nextBoolean()) {
+        throw new RuntimeException(
+          "Simulated failure happening after task was scheduled. Scheduled task will never run.");
+      }
+    });
   }
 
   /** Bean definition */
