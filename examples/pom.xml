@@ -21,6 +21,7 @@
     <modules>
         <module>features</module>
         <module>spring-boot-example</module>
+      <module>solon-example</module>
     </modules>
 
 </project>

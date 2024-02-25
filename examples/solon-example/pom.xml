@@ -5,40 +5,46 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.github.kagkarlsson</groupId>
-    <artifactId>db-scheduler-parent</artifactId>
+    <artifactId>examples</artifactId>
     <version>master-SNAPSHOT</version>
   </parent>
 
-  <artifactId>db-scheduler-plugin</artifactId>
+  <groupId>cn.murky</groupId>
+  <artifactId>solon-example</artifactId>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.noear</groupId>
-        <artifactId>solon-parent</artifactId>
-        <version>${solon.version}</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+  <properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
   <dependencies>
-    <!-- The library itself -->
     <dependency>
       <groupId>com.github.kagkarlsson</groupId>
-      <artifactId>db-scheduler</artifactId>
+      <artifactId>db-scheduler-plugin</artifactId>
       <version>${project.version}</version>
     </dependency>
-
+    <!--solon dependency-->
     <dependency>
       <groupId>org.noear</groupId>
-      <artifactId>solon.scheduling</artifactId>
+      <artifactId>solon</artifactId>
+      <version>${solon.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.noear</groupId>
+      <artifactId>solon-lib</artifactId>
+      <version>${solon.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.noear</groupId>
+      <artifactId>solon-api</artifactId>
+      <version>${solon.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.noear</groupId>
+      <artifactId>solon.config.yaml</artifactId>
       <version>${solon.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.noear</groupId>
-      <artifactId>solon.serialization.snack3</artifactId>
-      <version>${solon.version}</version>
-    </dependency>
   </dependencies>
 </project>
